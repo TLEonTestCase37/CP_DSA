@@ -131,19 +131,7 @@ public:
 
 void solve()
 {
-    int n, q;
-    cin >> n >> q;
-    segTree sgtree(n);
-    vector<int> arr(n);
-    for (int i = 0; i < n; i++)
-        cin >> arr[i];
-    sgtree.build(0, n - 1, 0, arr);
-    for (int i = 0; i < q; i++)
-    {
-        int l, r;
-        cin >> l >> r;
-        cout<<sgtree.query(0, n - 1, l - 1, r - 1, 0)<<endl;
-    }
+
 }
 
 int32_t main()
