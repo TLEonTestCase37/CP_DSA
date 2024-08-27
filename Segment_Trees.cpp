@@ -1,46 +1,58 @@
-class DSU
+class segTree
 {
 private:
-    map<int, int> parent;
-    map<int, pair<ll, ll>> rep;
+    vector<int> seg;
 
 public:
-    int find_set(int v)
+    segTree(int n)
     {
-        if (v == parent[v])
-            return v;
-        return parent[v] = find_set(parent[v]);
-    }
-    void make_set(int v)
-    {
-        parent[v] = v;
-        rep[v].first = 0;
-        rep[v].second = 1;
+        seg.resize(4 * n + 1);
     }
 
-    void union_sets(int a, int b)
+    void build(int low, int high, int index, vector<int> &arr)
     {
-        a = find_set(a);
-        b = find_set(b);
-        if (a != b)
+        if (low == high)
         {
-            if (rep[a].first < rep[b].first)
-                swap(a, b);
-            parent[b] = a;
-            if (rep[a].second == rep[b].first)
-                rep[a].first++;
-            rep[a].second += rep[b].second;
+            seg[index] = arr[low];
+            return;
         }
-    }
-    ll getS(int a)
-    {
-        a = find_set(a);
-        return rep[a].second;
+        int mid = low + (high - low) / 2;
+        build(low, mid, 2 * index + 1, arr);
+        build(mid + 1, high, 2 * index + 2, arr);
+        seg[index] = min(seg[2 * index + 1], seg[2 * index + 2]);
     }
 
-    ll getR(int a)
+    int query(int low, int high, int l, int r, int index)
     {
-        a = find_set(a);
-        return rep[a].first;
+        // no overlap
+        if (r < low || l > high)
+            return INT_MAX;
+
+        // complete overlap
+        if (l <= low && high <= r)
+            return seg[index];
+
+        // partial overlap
+        int mid = low + (high - low) / 2;
+        int left = query(low, mid, l, r, 2 * index + 1);
+        int right = query(mid + 1, high, l, r, 2 * index + 2);
+        return min(left, right);
+    }
+
+    void update(int index, int low, int high, int i, int val)
+    {
+        if (low == high)
+        {
+            seg[index] = val;
+            return;
+        }
+
+        int mid = low + (high - low) / 2;
+        if (i <= mid)
+            update(2 * index + 1, low, mid, i, val);
+        else
+            update(2 * index + 2, mid + 1, high, i, val);
+
+        seg[index] = min(seg[2 * index + 1], seg[2 * index + 2]);
     }
 };
