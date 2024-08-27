@@ -56,3 +56,7 @@ public:
         seg[index] = min(seg[2 * index + 1], seg[2 * index + 2]);
     }
 };
+
+//Problem 1->
+// https://codeforces.com/contest/339/submission/278431931
+
