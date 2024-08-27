@@ -65,3 +65,6 @@ public:
 // TLE on test case 13
 // Optimized by chatgpt and accepted
 // https://codeforces.com/contest/380/submission/278440893
+
+//Problem List ->
+//https://codeforces.com/blog/entry/22616
