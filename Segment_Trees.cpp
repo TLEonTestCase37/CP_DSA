@@ -68,3 +68,8 @@ public:
 
 //Problem List ->
 //https://codeforces.com/blog/entry/22616
+
+// Problem 3->
+// https://codeforces.com/contest/474/submission/278540459
+// bahut dimag khrab hua
+// how to find frequency of element in given range is explained here
