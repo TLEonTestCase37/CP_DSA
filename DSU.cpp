@@ -1,8 +1,11 @@
+
 class DSU
 {
 private:
-    map<int, int> parent;
-    map<int, pair<ll, ll>> rep;
+    umap<int, int> parent;
+    // map<int, pair<ll, ll>> rep;
+    umap<int,int>ranK;
+    umap<int,int>sizE;
 
 public:
     int find_set(int v)
@@ -14,8 +17,8 @@ public:
     void make_set(int v)
     {
         parent[v] = v;
-        rep[v].first = 0;
-        rep[v].second = 1;
+        ranK[v]=0;
+        sizE[v]=1;
     }
 
     void union_sets(int a, int b)
@@ -24,23 +27,23 @@ public:
         b = find_set(b);
         if (a != b)
         {
-            if (rep[a].first < rep[b].first)
+            if (ranK[a] < ranK[b])
                 swap(a, b);
             parent[b] = a;
-            if (rep[a].second == rep[b].first)
-                rep[a].first++;
-            rep[a].second += rep[b].second;
+            if (sizE[a] == sizE[b])
+                ranK[a]++;
+            sizE[a] += sizE[b];
         }
     }
     ll getS(int a)
     {
         a = find_set(a);
-        return rep[a].second;
+        return sizE[a];
     }
 
     ll getR(int a)
     {
         a = find_set(a);
-        return rep[a].first;
+        return ranK[a];
     }
 };
