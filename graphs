@@ -3,6 +3,26 @@ dfs learning stage -> 29 Aug
                       -> https://cses.fi/problemset/result/10353360/
                       -> https://cses.fi/problemset/result/10419796/
 dsu -> https://cses.fi/problemset/result/10419929/
+
+
 Have not been doing much in this past two weeks due to midsems...continuing now
 Simple BFS implementation , a new thing learned is that you should mark a node visited once you get to it, not after the loop ends 
 -> https://cses.fi/problemset/result/10578759/
+
+
+problems for bfs on cf found in a blog->
+easy
+329B
+1176E
+1037D
+35C (multi-source)
+
+medium level
+1651D
+1613E
+173B
+
+and some hard ones...
+542E
+29E
+1407E
